@@ -1,4 +1,4 @@
-// Static Site Generated Component
+// Static Site Generated Component and Incremental Site Generated Component
 import { fetchNames } from "@/utils/fetch-names";
 
 const NamesSSG = (props) => {
@@ -7,29 +7,25 @@ const NamesSSG = (props) => {
             <li key={`name-${idx}`}>
                 {item.id} : {item.name}
             </li>
-        )
-    })
+        );
+    });
 
-    return (
-        <ul>
-           {output} 
-        </ul>
-    )
-}
+    return <ul>{output}</ul>;
+};
 
 export const getStaticProps = async (context) => {
-    let names = []
+    let names = [];
     try {
-        names = await fetchNames()
-    } catch(err) {
-        console.error(err)
+        names = await fetchNames();
+    } catch (err) {
+        console.error(err);
     }
     return {
         props: {
             names,
-            revalidate: 20
+            revalidate: 20,
         },
-    }
-}
+    };
+};
 
-export default NamesSSG
+export default NamesSSG;

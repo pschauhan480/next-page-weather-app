@@ -7,28 +7,24 @@ const NamesSSR = (props) => {
             <li key={`name-${idx}`}>
                 {item.id} : {item.name}
             </li>
-        )
-    })
+        );
+    });
 
-    return (
-        <ul>
-           {output} 
-        </ul>
-    )
-}
+    return <ul>{output}</ul>;
+};
 
 export const getServerSideProps = async (context) => {
-    let names = []
+    let names = [];
     try {
-        names = await fetchNames()
-    } catch(err) {
-        console.error("fetch names error", err)
+        names = await fetchNames();
+    } catch (err) {
+        console.error("fetch names error", err);
     }
     return {
         props: {
-            names
-        }
-    }
-}
+            names,
+        },
+    };
+};
 
-export default NamesSSR
+export default NamesSSR;
