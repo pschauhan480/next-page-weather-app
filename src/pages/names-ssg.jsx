@@ -1,7 +1,7 @@
-// server side rendered component
+// Static Site Generated Component
 import { fetchNames } from "@/utils/fetch-names";
 
-const NamesSSR = (props) => {
+const NamesSSG = (props) => {
     const output = props.names.map((item, idx) => {
         return (
             <li key={`name-${idx}`}>
@@ -17,12 +17,12 @@ const NamesSSR = (props) => {
     )
 }
 
-export const getServerSideProps = async (context) => {
+export const getStaticProps = async (context) => {
     let names = []
     try {
         names = await fetchNames()
     } catch(err) {
-        console.error("fetch names error", err)
+        console.error(err)
     }
     return {
         props: {
@@ -31,4 +31,4 @@ export const getServerSideProps = async (context) => {
     }
 }
 
-export default NamesSSR
+export default NamesSSG
